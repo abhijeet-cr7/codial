@@ -4,6 +4,21 @@ const port = 8001;
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+// used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo')(session);
+const sassMiddleware = require('node-sass-middleware');
+
+app.use(sassMiddleware({
+  src : './assests/scss',
+  dest: './assests/css',
+  debug: true,
+  outputStyle: 'extended', 
+  prefix:'/css' 
+}));
+
 app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static('./assests'));
@@ -14,11 +29,44 @@ app.use(expressLayouts);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 // use express router
-app.use('/', require('./routes'));
-// set up the view engine
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
+
+
+// mongoStore is used to store the session cookie in the db
+app.use(session({
+    name: 'codial', 
+    // upar cookie ka naam hai
+    // TODO change the secret before deployment in production mode
+    secret: "blah something",
+    saveUninitialized: false,
+    // jab user login nahi kiya hai to extra data store nhi karega upar wla statement k karan cookie mein
+    resave: false,
+    // agar data saved hai aur uspar koi change nahi hua hai to upar wala statement usko waps add nahi karega
+    cookie:{
+        maxAge: (1000*60*100)
+        // ye upar milliseconds mein hai
+    },
+    store : new MongoStore({
+
+        mongooseConnection: db,
+        autoRemove: 'disabled'
+    },
+    function(err)
+    {
+        console.log(err || 'connect-mongodb setup ok');
+    }
+    )
+    // store is used in order to store the data in mongo even the sever gets killed
+    }
+));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+// use express router
+app.use('/', require('./routes'));
 app.listen(port, function(err){
     if(err){
         console.log(`Error in port ${err}`);

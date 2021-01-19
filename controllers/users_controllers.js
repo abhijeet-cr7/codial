@@ -9,15 +9,21 @@ module.exports.profile = function(req, res){
 }
 // render the signup page
 module.exports.signUp = function(req,res){
+    if(req.isAuthenticated()){
+     return res.redirect('/users/profile');
+    }
     return res.render('user_sign_up', {
         title: "Codiel / Signup"
     })
 }
 // render the signin page
 module.exports.signIn = function(req,res){
+    if(req.isAuthenticated()){
+     return res.redirect('/users/profile');
+    }
     return res.render('user_sign_in', {
         title: "Codiel / SignIn"
-    })
+    });
 }
 
 // get the sign up data
@@ -33,8 +39,8 @@ User.findOne({email: req.body.email}, function(err,user){
     }
     if(!user){
      User.create(req.body, function(err, user){
-    if(!user){
-        User.create(req.body, function(err, user){
+    // if(!user){
+    //     User.create(req.body, function(err, user){
             if(err){
                 console.log('error in creating user while signing up');
                 return;
@@ -46,9 +52,13 @@ User.findOne({email: req.body.email}, function(err,user){
     }    
     });
     }
-})
-}
 // sign in and create session for user
 module.exports.createSession = function(req,res){
-    
+    return res.redirect('/');
+}
+
+module.exports.destroySession = function(req,res){
+    req.logout();
+    // upar wala method passport provide krta hai request ko
+    return res.redirect('/');
 }
