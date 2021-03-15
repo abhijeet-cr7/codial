@@ -4,12 +4,13 @@ const passport = require('passport');
 const usersController = require("../controllers/users_controllers");
 
 router.get('/profile',passport.checkAuthentication ,usersController.profile);
+// use passport as a middleware to authenticate
 router.get('/sign-up', usersController.signUp);
 router.get('/sign-in', usersController.signIn);
 
 router.post('/create', usersController.create);
 
-// use passport as a middleware to authenticate
+
 router.post('/create-session', passport.authenticate(
      'local',
      // upar local passport ka strategy hai

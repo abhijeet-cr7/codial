@@ -1,7 +1,5 @@
 const User = require('../models/user');
 
-
-
 module.exports.profile = function(req, res){
  return res.render('user_profile', {
      title: 'User Profile'
@@ -52,7 +50,7 @@ User.findOne({email: req.body.email}, function(err,user){
     }    
     });
     }
-// sign in and create session for user
+    // sign in and create session for user
 module.exports.createSession = function(req,res){
     return res.redirect('/');
 }

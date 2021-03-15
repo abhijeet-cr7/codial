@@ -52,6 +52,7 @@ app.use(session({
 
         mongooseConnection: db,
         autoRemove: 'disabled'
+        // above property doesn't remove that automatically
     },
     function(err)
     {
@@ -60,7 +61,7 @@ app.use(session({
     )
     // store is used in order to store the data in mongo even the sever gets killed
     }
-));
+));  
 app.use(passport.initialize());
 app.use(passport.session());
 
