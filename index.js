@@ -10,6 +10,8 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash');
+const customWare = require('./config/middleware');
 
 app.use(sassMiddleware({
   src : './assests/scss',
@@ -66,6 +68,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customWare.setFlash);
 // use express router
 app.use('/', require('./routes'));
 app.listen(port, function(err){
@@ -74,3 +78,4 @@ app.listen(port, function(err){
     }
     console.log(`Server is running on port ${port}`);
 });
+// npm i connect-flash (for flash messages)
