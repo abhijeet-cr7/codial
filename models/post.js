@@ -11,7 +11,7 @@ const postSchema = new mongoose.Schema(
       // ObjectId comes from robo3t
       // the post needs to refer to the user's schema
       ref: "User",
-      // referennce hai upar user ka
+      // reference hai upar user ka
     },
     // include the array of ids of all comments in this post schema itself
     comments: [
