@@ -2,6 +2,7 @@ const User = require("../models/user");
 
 module.exports.profile = function (req, res) {
   User.findById(req.params.id, function(err, user){
+    console.log('params', req.params.id);
     return res.render("user_profile", {
       title: "User Profile",
       profile_user : user
@@ -64,11 +65,13 @@ module.exports.create = function (req, res) {
 };
 // sign in and create session for user
 module.exports.createSession = function (req, res) {
+  req.flash('success', 'Logged in Successfully')
   return res.redirect("/");
 };
 
 module.exports.destroySession = function (req, res) {
   req.logout();
+  req.flash('success', 'You have logged out!');
   // upar wala method passport provide krta hai request ko
   return res.redirect("/");
 };
