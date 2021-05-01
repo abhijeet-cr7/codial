@@ -1,33 +1,42 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
 
-module.exports.create = function (req, res) {
-  Post.findById(req.body.post, function (err, post) {
-    if (post) {
-      Comment.create(
-        {
-          content: req.body.content,
-          post: req.body.post,
-          user: req.user._id,
-        },
-        function (err, comment) {
-          //    handle error
-          if (err) {
-            console.log("error here in comment controllers", err);
-            return;
-          }
-          // console.log(comments);
-          console.log(post);
+module.exports.create = async function(req, res){
+
+  try{
+      let post = await Post.findById(req.body.post);
+
+      if (post){
+          let comment = await Comment.create({
+              content: req.body.content,
+              post: req.body.post,
+              user: req.user._id
+          });
+
           post.comments.push(comment);
-          // upar wala functionality provide karta hai mongo hmlog ko usse hoga ye ki push hojaega comment sidha posts mein
           post.save();
-          // upar save kya karega ki sidha save krega database mein nahi to aisehi sirf ye local storage mein rahega
-          res.redirect("/");
-        }
-      );
-    }
-  });
-};
+          
+          if (req.xhr)
+          {
+          comment = await comment.populate('user', 'name').execPopulate();  
+          return res.status(200).json({
+             data : {
+               comment: comment
+             },
+             message: "Post created!"
+          });
+          }
+
+          req.flash('success', 'Comment published!');
+
+          res.redirect('/');
+      }
+  }catch(err){
+      req.flash('error', err);
+      return;
+  }
+  
+}
 
 module.exports.destroy = function (req, res) {
   Comment.findById(req.params.id, function (err, comment) {

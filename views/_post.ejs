@@ -11,7 +11,7 @@
     </p>
     <div class="post-comments">
       <% if(locals.user){ %>
-      <form action="/comments/create" method="POST">
+      <form action="/comments/create" method="POST" id="new-comment-form">
         <input
           type="text"
           name="content"
@@ -34,3 +34,4 @@
       </ul>
     </div>
   </li>
+  <script src="/js/home_post_comments.js"></script>
