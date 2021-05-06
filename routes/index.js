@@ -19,4 +19,3 @@ router.use("/comments", require("./comments"));
 // router.use('/routerName, require('./routerfile));
 module.exports = router;
 
-//  can we talk on call??num? m ha se portal pr generate krti hu call okay?haan okay
