@@ -8,3 +8,10 @@
     padding: 10px;
     border-left: 1px solid grey;
     height: 100%; }
+
+#post-sbt {
+  border-radius: 5px;
+  height: 27px;
+  width: 65px;
+  font-family: cursive;
+  background-image: linear-gradient(to top right, cyan, limegreen); }
