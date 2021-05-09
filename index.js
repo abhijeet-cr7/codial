@@ -26,6 +26,7 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static('./assests'));
 app.use('/uploads',express.static(__dirname + '/uploads'));
+// dirname shows current directory
 app.use(expressLayouts);
 //route k upar lena hai layout 
 // extract style and scripts from sub pages into the layout

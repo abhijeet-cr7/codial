@@ -8,7 +8,17 @@
     margin-left: 50%;
     font-size: 15px;
     justify-content: space-around;
+    color:rgb(68, 68, 194);
+    font-family: cursive;
+}
+#header-text{
+  color: rgb(10, 10, 99);
+  font-family: cursive;
+  margin-left: 2%;
+  transition: 0.5s ease-in-out;
 }
 #header-text:hover{
     color: mediumorchid;
+    font-size: 27px;
+    margin-left: 3%;
 }

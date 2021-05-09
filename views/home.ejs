@@ -1,17 +1,18 @@
 <link rel="stylesheet" href="/css/home.css">
 <div id="home-container">
   <section id="feed-posts">
-    <h4>Posts</h4>
+    <h4 id="post-heading">Posts</h4>
     <% if (locals.user) { %>
     <form action="/posts/create" id="new-post-form" method="POST">
-      
+      <div id="post-form-block">
       <textarea
         name="content"
         cols="30"
         rows="3"
-        placeholder="Type here..."
+        placeholder="   Type here..."
       ></textarea>
       <input type="submit" value="Post" id="post-sbt"/>
+       </div>
     </form>
     <div id="posts-list-container">
       <ul>

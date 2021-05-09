@@ -14,6 +14,15 @@
     }
 
 }
+#post-heading{
+    font-family: cursive;
+    line-height: 30px;
+    font-weight:bolder;
+    font-size: large;
+}
+#post-form-block{
+    padding-bottom: 5px;
+}
 #post-sbt{
     border-radius: 5px;
     height: 27px;
@@ -21,4 +30,8 @@
     font-family: cursive;
     background-image: linear-gradient(to top right, cyan, limegreen);
     }
+#new-post-form textarea{
+    border-radius: 5px;
+
+}    
   
