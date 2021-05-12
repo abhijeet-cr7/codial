@@ -14,15 +14,20 @@
 //    });
 //  populate the user of each post
    try{
-   let posts = await Post.find({})
+    // CHANGE :: populate the likes of each post and comment
+    let posts = await Post.find({})
     .sort('-createdAt')
     .populate('user')
     .populate({
         path: 'comments',
-        populate : {
+        populate: {
             path: 'user'
+        },
+        populate: {
+            path: 'likes'
         }
-    })
+    }).populate('comments')
+    .populate('likes');
      
     let users = await User.find({});
 

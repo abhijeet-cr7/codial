@@ -11,6 +11,7 @@ let opts = {
 // created some options above
 
 passport.use(new JWTStrategy(opts, function(jwtPayLoad , done){
+  // payload contains information of user
   User.findById(jwtPayLoad._id, function(err,user)
   {
     //   jwytpayload ke andar id rehta hai pehle se aur yaha email aur password nahi le rahe local auth jaise kyuki yaha jwt header mein hi sara information hai.

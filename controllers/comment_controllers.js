@@ -3,10 +3,8 @@ const Post = require("../models/post");
 const commentsMailer = require('../mailers/comments_mailer');
 
 module.exports.create = async function(req, res){
-
   try{
       let post = await Post.findById(req.body.post);
-
       if (post){
           let comment = await Comment.create({
               content: req.body.content,
@@ -73,6 +71,5 @@ module.exports.destroy = async function(req, res){
   }catch(err){
       req.flash('error', err);
       return;
-  }
-  
+  } 
 }

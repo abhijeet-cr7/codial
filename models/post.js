@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const postSchema = new mongoose.Schema(
   {
     content: {
@@ -7,6 +6,7 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     user: {
+      // this type below is a reference
       type: mongoose.Schema.Types.ObjectId,
       // ObjectId comes from robo3t
       // the post needs to refer to the user's schema
@@ -20,6 +20,12 @@ const postSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
+    likes : [
+      {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: "Like"
+      }
+    ]
   },
   {
     timestamps: true,
