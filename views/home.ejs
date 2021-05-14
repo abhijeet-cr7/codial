@@ -27,17 +27,20 @@
   </section>
   
   <section id="user-friends">
-    <h4>Friends</h4>
+    <h4>Users</h4>
     <% for(u of all_users) { %>
     <p>
     <a href="/users/profile/<%= u.id %>"><%=u.name %></a>
     </p>
     <% } %>
+    <h4>Friends</h4>
+
   </section>
 </div>
 
 <script src="/js/home_posts.js"></script>
-<script src="js/toggle_likes.js"></script>
+<script src="/js/toggle_likes.js"></script>
+<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
 <script>
     $('.toggle-like-button').each(function(){
         let self = this;

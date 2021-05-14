@@ -1,7 +1,9 @@
+// CHANGE :: create a class to toggle likes when a link is clicked, using AJAX
 class ToggleLike{
     constructor(toggleElement){
         this.toggler = toggleElement;
         this.toggleLike();
+        console.log('toggle',toggleElement);
     }
 
 
@@ -9,7 +11,7 @@ class ToggleLike{
         $(this.toggler).click(function(e){
             e.preventDefault();
             let self = this;
-
+            console.log('SELF',self);
             // this is a new way of writing ajax which you might've studied, it looks like the same as promises
             $.ajax({
                 type: 'POST',
@@ -31,7 +33,7 @@ class ToggleLike{
 
             })
             .fail(function(errData) {
-                console.log('error in completing the request');
+                console.log(`error in completing the request ${errData}`);
             });
             
 

@@ -74,17 +74,17 @@ class PostComments{
         let self = this;
         // call for all the existing comments
         $(' .delete-comment-button', this.postContainer).each(function(){
+            console.log('ye wala this',$(this));
             self.deleteComment($(this));
         });
     }
-
-
     createComment(postId){
         let pSelf = this;
+        console.log('****pself',pSelf);
         this.newCommentForm.submit(function(e){
             e.preventDefault();
             let self = this;
-
+            console.log(self);
             $.ajax({
                 type: 'post',
                 url: '/comments/create',
@@ -95,7 +95,7 @@ class PostComments{
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
 
                     // CHANGE :: enable the functionality of the toggle like button on the new comment
-                    new ToggleLike($(' .toggle-like-button', newComment));
+                    // new ToggleLike($(' .toggle-like-button', newComment));
                     new Noty({
                         theme: 'relax',
                         text: "Comment published!",
