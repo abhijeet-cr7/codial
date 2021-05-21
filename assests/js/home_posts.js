@@ -66,7 +66,7 @@
                             <form id="post-${post._id}-comments-form" action="/comments/create" method="POST">
                                 <input type="text" name="content" placeholder="Type Here to add comment..." required>
                                 <input type="hidden" name="post" value="${post._id}" >
-                                <input type="submit" value="Add Comment">
+                                <input type="submit" value="Comment" id="comment-btn">
                             </form>
                
                 

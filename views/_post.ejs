@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/posts.css" />
+<link rel="stylesheet" href="/css/comments.css" />
 <li id="post-<%= post._id %>" class="post-feed">
   <p class="post-feed">
     <% if (locals.user && locals.user.id == post.user.id){ %>
@@ -44,7 +45,7 @@
         required
       />
       <input type="hidden" name="post" value="<%= post._id %>" />
-      <input type="submit" value="Add Comment" />
+      <input type="submit" value="Comment" id="comment-btn" />
     </form>
 
     <% } %>

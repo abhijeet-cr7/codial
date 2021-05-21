@@ -1,6 +1,5 @@
-<link rel="stylesheet" href="/css/comments.css" />
-<li id="comment-<%= comment._id %>">
-  <p id="comment-btn">
+<li id="comment-<%= comment._id %>" style="list-style-type: none">
+  <p>
     <% if (locals.user && locals.user.id == comment.user){ %>
 
     <small>

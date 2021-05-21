@@ -113,7 +113,7 @@ class PostComments {
   newCommentDom(comment) {
     // CHANGE :: show the count of zero likes on this comment
 
-    return $(`<li id="comment-${comment._id}">
+    return $(`<li id="comment-${comment._id}" style="list-style-type: none">
                         <p id="comment-btn">
                             
                             <small>
