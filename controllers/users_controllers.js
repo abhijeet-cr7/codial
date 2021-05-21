@@ -9,8 +9,8 @@ module.exports.profile = function(req, res){
           profile_user: user
       });
   });
-
 }
+
 module.exports.update = async function(req, res){
    if(req.user.id == req.params.id)
    {
